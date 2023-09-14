@@ -4,6 +4,7 @@ import { Nunito } from 'next/font/google';
 import { Navbar } from '@/app/components/navbar/Navbar';
 import { RegisterModal } from './components/modals/RegisterModal';
 import { LoginModal } from './components/modals/LoginModal';
+import { RentModal } from './components/modals/RentModal';
 // import { ToasterProvider } from './providers/ToasterProvider';
 import { Toaster } from 'react-hot-toast';
 import getCurrentUser from './actions/getCurrentUser';
@@ -26,10 +27,11 @@ export default async function RootLayout({
 		<html lang='en'>
 			<body className={font.className}>
 				<Toaster />
+				<RentModal />
 				<RegisterModal />
 				<LoginModal />
 				<Navbar currentUser={currentUser} />
-				{children}
+				<div className='pb-20 pt-28'>{children}</div>
 			</body>
 		</html>
 	);
