@@ -5,6 +5,7 @@ import { Navbar } from '@/app/components/navbar/Navbar';
 import { RegisterModal } from './components/modals/RegisterModal';
 import { LoginModal } from './components/modals/LoginModal';
 import { RentModal } from './components/modals/RentModal';
+import { SearchModal } from './components/modals/SearchModal';
 // import { ToasterProvider } from './providers/ToasterProvider';
 import { Toaster } from 'react-hot-toast';
 import getCurrentUser from './actions/getCurrentUser';
@@ -29,6 +30,7 @@ export default async function RootLayout({
 				<Toaster />
 				<RentModal />
 				<RegisterModal />
+				<SearchModal />
 				<LoginModal />
 				<Navbar currentUser={currentUser} />
 				<div className='pb-20 pt-28'>{children}</div>
