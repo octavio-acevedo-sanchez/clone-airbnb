@@ -1,7 +1,7 @@
 'use client';
 
 import { useCountries } from '@/app/hooks/useCountries';
-import { SafeUser } from '@/app/types';
+import type { SafeUser } from '@/app/types';
 import { Heading } from '../Heading';
 import Image from 'next/image';
 import { HeartButton } from '../HeartButton';
@@ -29,7 +29,7 @@ export const ListingHead: React.FC<ListingHeadProps> = ({
 		<>
 			<Heading
 				title={title}
-				subtitle={`${location?.region}, ${location?.label}`}
+				subtitle={`${location?.region ?? ''}, ${location?.label ?? ''}`}
 			/>
 			<div className=' w-full h-[60vh] overflow-hidden rounded-xl relative'>
 				<Image

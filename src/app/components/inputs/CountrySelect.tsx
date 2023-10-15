@@ -2,13 +2,13 @@
 import { useCountries } from '@/app/hooks/useCountries';
 import Select from 'react-select';
 
-export type CountrySelectValue = {
+export interface CountrySelectValue {
 	flag: string;
 	label: string;
 	latlng: number[];
 	region: string;
 	value: string;
-};
+}
 
 interface CountrySelectProps {
 	value?: CountrySelectValue;
@@ -28,7 +28,9 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
 				isClearable
 				options={getAll()}
 				value={value}
-				onChange={value => onChange(value as CountrySelectValue)}
+				onChange={value => {
+					onChange(value as CountrySelectValue);
+				}}
 				formatOptionLabel={(option: any) => (
 					<div className='flex flex-row items-center gap-3'>
 						<div>{option.flag}</div>

@@ -5,7 +5,7 @@ import { useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { SafeUser, SafeListing, SafeReservation } from '@/app/types';
+import type { SafeUser, SafeListing, SafeReservation } from '@/app/types';
 import { useCountries } from '@/app/hooks/useCountries';
 import { format } from 'date-fns';
 import { HeartButton } from '../HeartButton';
@@ -69,7 +69,9 @@ export const ListingCard: React.FC<ListingCardProps> = ({
 
 	return (
 		<div
-			onClick={() => router.push(`/listings/${data.id}`)}
+			onClick={() => {
+				router.push(`/listings/${data.id}`);
+			}}
 			className='col-span-1 cursor-pointer group'
 		>
 			<div className='flex flex-col gap-2 w-full'>
@@ -90,7 +92,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
 					{location?.region}, {location?.label}
 				</div>
 				<div className='font-light text-neutral-500'>
-					{reservationDate || data.category}
+					{reservationDate ?? data.category}
 				</div>
 				<div className='flex flex-row items-center gap-1'>
 					<div className='font-semibold'>$ {price}</div>

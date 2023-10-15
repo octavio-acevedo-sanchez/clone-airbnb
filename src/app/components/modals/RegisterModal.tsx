@@ -11,7 +11,8 @@ import { Input } from '../inputs/Input';
 import axios from 'axios';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import type { FieldValues, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { Button } from '../Button';
 import { signIn } from 'next-auth/react';
@@ -94,13 +95,17 @@ export const RegisterModal = () => {
 				outline
 				label='Continue with Google'
 				icon={FcGoogle}
-				onClick={() => signIn('google')}
+				onClick={() => {
+					void signIn('google');
+				}}
 			/>
 			<Button
 				outline
 				label='Continue with Github'
 				icon={AiFillGithub}
-				onClick={() => signIn('github')}
+				onClick={() => {
+					void signIn('github');
+				}}
 			/>
 			<div className='text-neutral-500 text-center mt-4 font-light'>
 				<div className='justify-center flex flex-row items-center gap-2'>
@@ -123,7 +128,7 @@ export const RegisterModal = () => {
 			title='Register'
 			actionLabel='Continue'
 			onClose={registerModal.onClose}
-			onSubmit={handleSubmit(onSubmit)}
+			onSubmit={() => handleSubmit(onSubmit)}
 			body={bodyContent}
 			footer={footerContent}
 		/>

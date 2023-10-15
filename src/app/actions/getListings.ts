@@ -24,7 +24,7 @@ export default async function getListings(params: IListingParams) {
 			category
 		} = params;
 
-		let query: any = {};
+		const query: any = {};
 
 		if (userId) {
 			query.userId = userId;
@@ -56,24 +56,24 @@ export default async function getListings(params: IListingParams) {
 			query.locationValue = locationValue;
 		}
 
-    if(startDate && endDate){
-      query.NOT = {
-        reservations: {
-          some: {
-            OR: [
-              {
-                endDate: {gte: startDate},
-                startDate: {lte: startDate},
-              },
-              {
-                startDate: {lte: endDate},
-                endDate: {gte: startDate},
-              }
-            ]
-          }
-        }
-      }
-    }
+		if (startDate && endDate) {
+			query.NOT = {
+				reservations: {
+					some: {
+						OR: [
+							{
+								endDate: { gte: startDate },
+								startDate: { lte: startDate }
+							},
+							{
+								startDate: { lte: endDate },
+								endDate: { gte: startDate }
+							}
+						]
+					}
+				}
+			};
+		}
 
 		const listings = await prisma.listing.findMany({
 			where: query,

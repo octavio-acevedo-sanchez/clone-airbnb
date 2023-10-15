@@ -23,7 +23,9 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
 					<Button
 						outline
 						label='Remove all filters'
-						onClick={() => router.push('/')}
+						onClick={() => {
+							router.push('/');
+						}}
 					/>
 				)}
 			</div>

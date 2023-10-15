@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 import { toast } from 'react-hot-toast';
 
-import { SafeUser } from '../types';
+import type { SafeUser } from '../types';
 
 import { useLoginModal } from './useLoginModal';
 
@@ -17,7 +17,7 @@ export const useFavorite = ({ listingId, currentUser }: IUserFavorite) => {
 	const loginModal = useLoginModal();
 
 	const hasFavorited = useMemo(() => {
-		const list = currentUser?.favoriteIds || [];
+		const list = currentUser?.favoriteIds ?? [];
 
 		return list.includes(listingId);
 	}, [currentUser, listingId]);
@@ -27,15 +27,17 @@ export const useFavorite = ({ listingId, currentUser }: IUserFavorite) => {
 			e.stopPropagation();
 
 			if (!currentUser) {
-				return loginModal.onOpen();
+				loginModal.onOpen();
+				return;
 			}
 
 			try {
 				let request;
 				if (hasFavorited) {
-					request = () => axios.delete(`/api/favorites/${listingId}`);
+					request = async () =>
+						await axios.delete(`/api/favorites/${listingId}`);
 				} else {
-					request = () => axios.post(`/api/favorites/${listingId}`);
+					request = async () => await axios.post(`/api/favorites/${listingId}`);
 				}
 
 				await request();

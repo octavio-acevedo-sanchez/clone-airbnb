@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 
-import { SafeReservation, SafeUser } from '../types';
+import type { SafeReservation, SafeUser } from '../types';
 
 import { Heading } from '../components/Heading';
 import { Container } from '../components/Container';

@@ -3,10 +3,6 @@ import getCurrentUser from '@/app/actions/getCurrentUser';
 import getFavoriteListings from '@/app/actions/getFavoriteListings';
 import { FavoritesClient } from './FavoritesClient';
 
-interface IParams {
-	listingId?: string;
-}
-
 const FavoritesPage = async () => {
 	const listings = await getFavoriteListings();
 	const currentUser = await getCurrentUser();

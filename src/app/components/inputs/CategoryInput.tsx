@@ -1,15 +1,15 @@
 'use client';
 
-import { IconType } from 'react-icons';
+import type { IconType } from 'react-icons';
 
-interface CategoryInput {
+interface CategoryInputProps {
 	icon: IconType;
 	label: string;
 	selected: boolean;
 	onClick: (value: string) => void;
 }
 
-export const CategoryInput: React.FC<CategoryInput> = ({
+export const CategoryInput: React.FC<CategoryInputProps> = ({
 	icon: Icon,
 	label,
 	selected,
@@ -17,7 +17,9 @@ export const CategoryInput: React.FC<CategoryInput> = ({
 }) => {
 	return (
 		<div
-			onClick={() => onClick(label)}
+			onClick={() => {
+				onClick(label);
+			}}
 			className={`
       rounded-xl
       border-2

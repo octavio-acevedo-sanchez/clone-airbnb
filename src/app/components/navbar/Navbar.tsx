@@ -2,7 +2,7 @@
 
 import { Container } from '@/app/components/Container';
 import { Categories, Logo, Search, UserMenu } from '.';
-import { SafeUser } from '@/app/types';
+import type { SafeUser } from '@/app/types';
 
 interface NavbarProps {
 	currentUser?: SafeUser | null;

@@ -12,7 +12,8 @@ import { Input } from '../inputs/Input';
 
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import type { FieldValues, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { Button } from '../Button';
 
@@ -32,10 +33,10 @@ export const LoginModal = () => {
 			password: ''
 		}
 	});
-	const onSubmit: SubmitHandler<FieldValues> = data => {
+	const onSubmit: SubmitHandler<FieldValues> = async data => {
 		setIsLoading(true);
 
-		signIn('credentials', {
+		await signIn('credentials', {
 			...data,
 			redirect: false
 		}).then(callback => {
@@ -88,13 +89,17 @@ export const LoginModal = () => {
 				outline
 				label='Continue with Google'
 				icon={FcGoogle}
-				onClick={() => signIn('google')}
+				onClick={() => {
+					void signIn('google');
+				}}
 			/>
 			<Button
 				outline
 				label='Continue with Github'
 				icon={AiFillGithub}
-				onClick={() => signIn('github')}
+				onClick={() => {
+					void signIn('github');
+				}}
 			/>
 			<div className='text-neutral-500 text-center mt-4 font-light'>
 				<div className='justify-center flex flex-row items-center gap-2'>
@@ -117,7 +122,9 @@ export const LoginModal = () => {
 			title='Login'
 			actionLabel='Continue'
 			onClose={loginModal.onClose}
-			onSubmit={handleSubmit(onSubmit)}
+			onSubmit={() => {
+				handleSubmit(onSubmit);
+			}}
 			body={bodyContent}
 			footer={footerContent}
 		/>

@@ -4,13 +4,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
 import { useSearchModal } from '@/app/hooks/useSearchModal';
-import { CountrySelect, CountrySelectValue } from '../inputs/CountrySelect';
+import type { CountrySelectValue } from '../inputs/CountrySelect';
+import { CountrySelect } from '../inputs/CountrySelect';
 import { Modal } from './Modal';
 import { Heading } from '../Heading';
 import { Calendar } from '../inputs/Calendar';
 import { Counter } from '../inputs/Counter';
 
-import { Range } from 'react-date-range';
+import type { Range } from 'react-date-range';
 import qs from 'query-string';
 import { formatISO } from 'date-fns';
 
@@ -37,7 +38,7 @@ export const SearchModal = () => {
 	});
 
 	const Map = useMemo(
-		() => dynamic(() => import('../Map'), { ssr: false }),
+		() => dynamic(async () => await import('../Map'), { ssr: false }),
 		[location]
 	);
 
@@ -49,9 +50,10 @@ export const SearchModal = () => {
 		setStep(value => value + 1);
 	}, []);
 
-	const onSubmit = useCallback(async () => {
+	const onSubmit = useCallback(() => {
 		if (step !== STEPS.INFO) {
-			return onNext();
+			onNext();
+			return;
 		}
 
 		let currentQuery = {};
@@ -93,6 +95,7 @@ export const SearchModal = () => {
 		location,
 		router,
 		guestCount,
+		roomCount,
 		bathroomCount,
 		dateRange,
 		onNext,
@@ -113,7 +116,7 @@ export const SearchModal = () => {
 		}
 
 		return 'Back';
-	}, []);
+	}, [step]);
 
 	let bodyContent = (
 		<div className='flex flex-col gap-8'>
@@ -123,7 +126,9 @@ export const SearchModal = () => {
 			/>
 			<CountrySelect
 				value={location}
-				onChange={value => setLocation(value as CountrySelectValue)}
+				onChange={value => {
+					setLocation(value);
+				}}
 			/>
 			<hr />
 			<Map center={location?.latlng} />
@@ -139,7 +144,9 @@ export const SearchModal = () => {
 				/>
 				<Calendar
 					value={dateRange}
-					onChange={value => setDateRange(value.selection)}
+					onChange={value => {
+						setDateRange(value.selection);
+					}}
 				/>
 			</div>
 		);
@@ -153,19 +160,25 @@ export const SearchModal = () => {
 					title='Guests'
 					subtitle='How many guest are coming?'
 					value={guestCount}
-					onChange={value => setGuestCount(value)}
+					onChange={value => {
+						setGuestCount(value);
+					}}
 				/>
 				<Counter
 					title='Rooms'
 					subtitle='How many rooms do you need?'
 					value={roomCount}
-					onChange={value => setRoomCount(value)}
+					onChange={value => {
+						setRoomCount(value);
+					}}
 				/>
 				<Counter
 					title='Bathrooms'
 					subtitle='How many bathrooms do you need?'
 					value={bathroomCount}
-					onChange={value => setBathroomCount(value)}
+					onChange={value => {
+						setBathroomCount(value);
+					}}
 				/>
 			</div>
 		);
@@ -175,7 +188,9 @@ export const SearchModal = () => {
 		<Modal
 			isOpen={searchModal.isOpen}
 			onClose={searchModal.onClose}
-			onSubmit={onSubmit}
+			onSubmit={() => {
+				onSubmit();
+			}}
 			title='Filters'
 			actionLabel={actionLabel}
 			secondaryActionLabel={secondaryActionLabel}

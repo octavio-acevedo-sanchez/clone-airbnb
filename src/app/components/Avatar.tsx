@@ -11,7 +11,7 @@ export const Avatar: React.FC<AvatarProps> = ({ src }) => {
 			height='30'
 			width='30'
 			alt='Avatar'
-			src={src || '/images/placeholder.jpg'}
+			src={src ?? '/images/placeholder.jpg'}
 		/>
 	);
 };

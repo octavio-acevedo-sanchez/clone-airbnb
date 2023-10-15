@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useRegisterModal } from '@/app/hooks/useRegisterModal';
 import { useLoginModal } from '@/app/hooks/useLoginModal';
 import { useRentModal } from '@/app/hooks/useRentModal';
-import { SafeUser } from '@/app/types';
+import type { SafeUser } from '@/app/types';
 import { Avatar } from '../Avatar';
 import { MenuItem } from './';
 
@@ -29,11 +29,16 @@ export const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
 	const onRent = useCallback(() => {
 		if (!currentUser) {
-			return loginModal.onOpen();
+			loginModal.onOpen();
+			return;
 		}
 
 		rentModal.onOpen();
-	}, [currentUser, loginModal]);
+	}, [rentModal, currentUser, loginModal]);
+
+	const logout = async () => {
+		await signOut();
+	};
 
 	return (
 		<div className='relative'>
@@ -61,24 +66,37 @@ export const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 						{currentUser ? (
 							<>
 								<MenuItem
-									onClick={() => router.push('/trips')}
+									onClick={() => {
+										router.push('/trips');
+									}}
 									label='My trips'
 								/>
 								<MenuItem
-									onClick={() => router.push('/favorites')}
+									onClick={() => {
+										router.push('/favorites');
+									}}
 									label='My favorites'
 								/>
 								<MenuItem
-									onClick={() => router.push('/reservations')}
+									onClick={() => {
+										router.push('/reservations');
+									}}
 									label='My reservations'
 								/>
 								<MenuItem
-									onClick={() => router.push('/properties')}
+									onClick={() => {
+										router.push('/properties');
+									}}
 									label='My properties'
 								/>
 								<MenuItem onClick={rentModal.onOpen} label='Airbnb my home' />
 								<hr></hr>
-								<MenuItem onClick={() => signOut()} label='Logout' />
+								<MenuItem
+									onClick={() => {
+										void logout();
+									}}
+									label='Logout'
+								/>
 							</>
 						) : (
 							<>
