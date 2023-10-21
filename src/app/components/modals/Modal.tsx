@@ -8,7 +8,8 @@ import { IoMdClose } from 'react-icons/io';
 interface ModalProps {
 	isOpen?: boolean;
 	onClose: () => void;
-	onSubmit: () => Promise<void>;
+	// onSubmit: () => Promise<void>;
+	onSubmit: () => void;
 	title?: string;
 	body?: React.ReactElement;
 	footer?: React.ReactElement;
@@ -47,12 +48,12 @@ export const Modal: React.FC<ModalProps> = ({
 		}, 300);
 	}, [disabled, onClose]);
 
-	const handleSubmit = useCallback(async () => {
+	const handleSubmit = useCallback(() => {
 		if (disabled) {
 			return;
 		}
 
-		await onSubmit();
+		onSubmit();
 	}, [disabled, onSubmit]);
 
 	const handleSecondaryAction = useCallback(() => {
@@ -108,7 +109,7 @@ export const Modal: React.FC<ModalProps> = ({
 										disabled={disabled}
 										label={actionLabel}
 										onClick={() => {
-											void handleSubmit();
+											handleSubmit();
 										}}
 									/>
 								</div>
