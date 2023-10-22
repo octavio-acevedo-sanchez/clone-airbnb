@@ -11,59 +11,74 @@ export const Footer = () => {
 			<Container>
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-2 pt-12 pb-10 border-b-[1px] border-neutral-300'>
 					<div>
-						<p className='font-bold pb-1'>Asistencia</p>
+						<p className='font-bold pb-1'>Support</p>
 						<a href='#' className='block pb-1'>
-							Centro de ayuda
+							Help Center
 						</a>
 						<a href='#' className='block pb-1'>
 							AirCover
 						</a>
 						<a href='#' className='block pb-1'>
-							Antidiscriminación
+							Anti-discrimination
 						</a>
 						<a href='#' className='block pb-1'>
-							Apoyo para discapacitados
+							Disability support
 						</a>
 						<a href='#' className='block pb-1'>
-							Opciones de cancelación
+							Cancellation options
 						</a>
 						<a href='#' className='block'>
-							Problemas en el vecindario
+							Report neighborhood concern
 						</a>
 					</div>
 					<div>
-						<p className='font-bold pb-1'>Modo anfitrión</p>
+						<p className='font-bold pb-1'>Hosting</p>
 						<a href='#' className='block pb-1'>
-							Pon tu espacio en Airbnb
+							Airbnb your home
 						</a>
 						<a href='#' className='block pb-1'>
-							AirCover para anfitriones
+							AirCover for Hosts
 						</a>
 						<a href='#' className='block pb-1'>
-							Recursos para anfitriones
+							Hosting resources
 						</a>
 						<a href='#' className='block pb-1'>
-							Foro Comunitario
+							Community forum
+						</a>
+						<a href='#' className='block pb-1'>
+							Hosting responsibly
+						</a>
+						<a href='#' className='block pb-1'>
+							Airbnb-friendly apartments
 						</a>
 					</div>
 					<div>
 						<p className='font-bold pb-1'>Airbnb</p>
 						<a href='#' className='block pb-1'>
-							Sala de prensa
+							Newsroom
 						</a>
 						<a href='#' className='block pb-1'>
-							Funciones nuevas
+							New features
 						</a>
 						<a href='#' className='block pb-1'>
-							Carreras
+							Careers
+						</a>
+						<a href='#' className='block pb-1'>
+							Investors
+						</a>
+						<a href='#' className='block pb-1'>
+							Gift cards
+						</a>
+						<a href='#' className='block pb-1'>
+							Airbnb.org emergency stays
 						</a>
 					</div>
 				</div>
 				<div className='flex flex-wrap justify-between pt-3 pb-3'>
 					<div className='flex gap-3 items-center'>
-						<span>© 2023 Airbnb, Inc.</span> <a href='#'>Privacidad</a>
-						<a href='#'>Términos</a> <a href='#'>Mapa del sitio</a>
-						<a href='#'>Datos de la empresa</a>
+						<span>© 2023 Airbnb, Inc.</span> <a href='#'>Privacy</a>
+						<a href='#'>Terms</a> <a href='#'>Sitemap</a>
+						<a href='#'>Your Privacy Choices</a>
 					</div>
 					<div className='flex gap-2 justify-end items-center'>
 						$ COP <AiFillFacebook size={30} /> <AiFillTwitterSquare size={30} />
