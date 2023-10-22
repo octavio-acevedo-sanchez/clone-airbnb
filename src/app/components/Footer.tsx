@@ -76,7 +76,7 @@ export const Footer = () => {
 				</div>
 				<div className='flex flex-wrap justify-between pt-3 pb-3'>
 					<div className='flex gap-3 items-center'>
-						<span>© 2023 Airbnb, Inc.</span> <a href='#'>Privacy</a>
+						<span>© 2023 Airbnb, Inc.</span> <a href='#'>Privacy </a>
 						<a href='#'>Terms</a> <a href='#'>Sitemap</a>
 						<a href='#'>Your Privacy Choices</a>
 					</div>
